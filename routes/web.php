@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/doctor', function () {
-    return view('doctor');
-});
+// Route::get('/doctor', function () {
+//     return view('doctor');
+// });
 
+Route::resource('/Doctor', DoctorController::class);
+
+Route::get('/doctor', [DoctorController::class, 'index'])->name('doctor');
+
+Route::get('/doctor_details', function () {
+    return view('doctor_details');
+});
